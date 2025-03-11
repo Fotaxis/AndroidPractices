@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">AndroidPractices</string>
+    <string name="search">Поиск\n</string>
+    <string name="not_found">Не найдено</string>
+    <string name="not_announced">Не известно</string>
 </resources>
