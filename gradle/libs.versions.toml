@@ -8,6 +8,10 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
 composeBom = "2025.02.00"
+retrofit = "2.11.0"
+converterGson = "2.11.0"
+gson = "2.12.1"
+chuckerteam = "4.1.0"
 
 koin = "4.0.0"
 coilCompose = "3.0.0"
@@ -36,7 +40,10 @@ androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-
 modo-compose = { module = "com.github.terrakok:modo-compose", version.ref = "modoCompose" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coilCompose" }
-
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+chuckerteam = { module = "com.github.chuckerteam.chucker:library", version.ref = "chuckerteam" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

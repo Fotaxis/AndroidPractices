@@ -1,7 +1,7 @@
 package com.example.androidpractices.gameList.domain.entity
 
 class GameFullEntity(
-    val id: Int,
+    val id: String,
     val title: String,
     val description: String,
     val year: String,
@@ -11,7 +11,7 @@ class GameFullEntity(
     val platforms: List<Platform>,
     val metacritic: Int,
     val developers: List<String>,
-    val publisher: String,
+    val publishers: List<String>,
     val genres: List<Genre>,
     val tags: List<String>
 )

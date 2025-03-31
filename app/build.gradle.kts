@@ -58,6 +58,10 @@ dependencies {
     implementation(libs.koin.compose)
     implementation(libs.koin.android)
     implementation(libs.coil.network.okhttp)
+    implementation(libs.retrofit)
+    implementation(libs.gson)
+    implementation(libs.converter.gson)
+    implementation(libs.chuckerteam)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -7,4 +7,6 @@ interface GameDetailState {
     val rating: Int
     val maxRating: Int
     val isRatingVisible: Boolean
+    val isLoading: Boolean
+    val error: String?
 }

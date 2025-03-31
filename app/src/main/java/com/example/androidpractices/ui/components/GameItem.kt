@@ -14,10 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.example.androidpractices.gameList.data.repository.GamesRepository
 import com.example.androidpractices.gameList.domain.entity.GameShortEntity
 import com.example.androidpractices.ui.theme.Spacing
 
@@ -54,10 +52,4 @@ fun GameItem(
             )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GameItemPreview() {
-    GameItem(GamesRepository().getList("").first())
 }
