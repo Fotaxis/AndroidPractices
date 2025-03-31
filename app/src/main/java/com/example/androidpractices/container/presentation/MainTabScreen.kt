@@ -22,16 +22,13 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 class MainTabScreen(
     private val navModel: MultiScreenNavModel = MultiScreenNavModel(
-        screens = AppTabs.entries.map { it.screen },
-        selected = 0
+        screens = AppTabs.entries.map { it.screen }, selected = 0
     )
 ) : MultiScreen(navModel) {
     @Composable
     override fun Content(modifier: Modifier) {
-        Scaffold(
-            modifier = modifier,
-            bottomBar = { MenuBar(navigationState.selected) { pos -> selectScreen(pos) } }
-        ) { paddingValues ->
+        Scaffold(modifier = modifier,
+            bottomBar = { MenuBar(navigationState.selected) { pos -> selectScreen(pos) } }) { paddingValues ->
             SelectedScreen(
                 modifier = Modifier
                     .padding(paddingValues)
@@ -44,6 +41,5 @@ class MainTabScreen(
 }
 
 enum class AppTabs(val icon: ImageVector, val screen: Screen) {
-    LIST(Icons.AutoMirrored.Rounded.List, ListScreen()),
-    HOME(Icons.Filled.Person, ProfileScreen())
+    LIST(Icons.AutoMirrored.Rounded.List, ListScreen()), HOME(Icons.Filled.Person, ProfileScreen())
 }

@@ -1,5 +1,6 @@
 package com.example.androidpractices.gameList.presentation.screens
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -7,7 +8,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
@@ -38,8 +38,7 @@ import org.koin.core.parameter.parametersOf
 
 @Parcelize
 class GameScreen(
-    override val screenKey: ScreenKey = generateScreenKey(),
-    val gameId: Int
+    override val screenKey: ScreenKey = generateScreenKey(), val gameId: Int
 ) : Screen {
     @Composable
     override fun Content(modifier: Modifier) {
@@ -50,7 +49,7 @@ class GameScreen(
         MovieScreenContent(
             state,
             onBackPressed = { viewModel.back() },
-            onRatingChanged = { viewModel.onRatingChanged(it) }
+            onRatingChanged = { viewModel.onRatingChanged(it) },
         )
     }
 }
@@ -59,7 +58,7 @@ class GameScreen(
 private fun MovieScreenContent(
     state: GameDetailState,
     onBackPressed: () -> Unit,
-    onRatingChanged: (Float) -> Unit
+    onRatingChanged: (Int) -> Unit,
 ) {
     Scaffold(
         topBar = { SimpleAppBar(state.game?.title.orEmpty(), onBackPressed) },
@@ -72,21 +71,20 @@ private fun MovieScreenContent(
             Modifier
                 .padding(it)
                 .padding(Spacing.medium)
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(Spacing.small)
         ) {
-            Row {
-                AsyncImage(model = game.image,
+            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.medium)) {
+                AsyncImage(
+                    model = game.image,
                     contentDescription = null,
-                    modifier = Modifier
-                        .size(100.dp),
-                    contentScale = ContentScale.Crop)
-
-                Spacer(modifier = Modifier.width(Spacing.medium))
+                    modifier = Modifier.size(100.dp),
+                    contentScale = ContentScale.Crop,
+                )
 
                 Column {
                     Text(
-                        text = game.title,
-                        style = MaterialTheme.typography.titleMedium
+                        text = game.title, style = MaterialTheme.typography.titleMedium
                     )
                     Text(
                         text = game.platforms.joinToString(", ") { it.name },
@@ -94,7 +92,7 @@ private fun MovieScreenContent(
                     )
                     Spacer(modifier = Modifier.height(Spacing.medium))
                     Text(
-                        text = "Metacritic: " + game.metacritic.toString(),
+                        text = stringResource(R.string.metacritic, game.metacritic),
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
@@ -104,48 +102,36 @@ private fun MovieScreenContent(
             Spacer(modifier = Modifier.height(Spacing.medium))
 
             Text(
-                text = "Разработчики: " + game.developers.joinToString(", "),
+                text = stringResource(R.string.developers, game.developers.joinToString(", ")),
                 style = MaterialTheme.typography.bodySmall
             )
-
-            Spacer(modifier = Modifier.height(Spacing.small))
 
             Text(
-                text = "Издатель: " + game.publisher,
+                text = stringResource(R.string.publisher, game.publisher),
                 style = MaterialTheme.typography.bodySmall
             )
-
-            Spacer(modifier = Modifier.height(Spacing.small))
 
             Text(
-                text = "Дата выхода: " + if (!game.tba) game.year else stringResource(R.string.not_announced),
-                style = MaterialTheme.typography.bodySmall
+                text = stringResource(
+                    R.string.releaseDate,
+                    if (!game.tba) game.year else stringResource(R.string.not_announced)
+                ), style = MaterialTheme.typography.bodySmall
             )
-
-            Spacer(modifier = Modifier.height(Spacing.small))
 
             Text(
-                text = "Жанры: " + game.genres.joinToString(", ") { it.name },
+                text = stringResource(R.string.genres, game.genres.joinToString(", ") { it.name }),
                 style = MaterialTheme.typography.bodySmall
             )
-
-            Spacer(modifier = Modifier.height(Spacing.small))
-
 
             Text(
-                text = "Теги: " + game.tags.joinToString(", "),
+                text = stringResource(R.string.tags, game.tags.joinToString(", ")),
                 style = MaterialTheme.typography.bodySmall
             )
-
-            Spacer(modifier = Modifier.height(Spacing.small))
-
 
             Text(
-                text = "Описание: " + game.description,
+                text = stringResource(R.string.description, game.description),
                 style = MaterialTheme.typography.bodySmall
             )
-
-            Spacer(modifier = Modifier.height(Spacing.small))
 
             Row {
                 game.rating.forEach { rating ->
@@ -158,14 +144,14 @@ private fun MovieScreenContent(
             RatingBar(
                 rating = state.rating,
                 onRatingChanged = { onRatingChanged.invoke(it) },
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                maxRating = state.maxRating
             )
 
-            Spacer(modifier = Modifier.height(Spacing.small))
 
             if (state.isRatingVisible) {
                 Text(
-                    text = "Ваша оценка ${state.rating}/10",
+                    text = stringResource(R.string.yourRating, state.rating, state.maxRating),
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
             }

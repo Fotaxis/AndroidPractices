@@ -1,7 +1,7 @@
 package com.example.androidpractices.gameList.presentation.viewModel
 
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -28,13 +28,15 @@ class DetailsViewModel(
         navigation.back()
     }
 
-    fun onRatingChanged(rating: Float) {
+    fun onRatingChanged(rating: Int) {
         mutableState.rating = rating
     }
 
     private class MutableDetailsState : GameDetailState {
         override var game: GameFullEntity? by mutableStateOf(null)
-        override var rating: Float by mutableFloatStateOf(0f)
-        override val isRatingVisible: Boolean get() = rating != 0f
+        override var rating: Int by mutableIntStateOf(0)
+        override val maxRating: Int
+            get() = 5
+        override val isRatingVisible: Boolean get() = rating != 0
     }
 }

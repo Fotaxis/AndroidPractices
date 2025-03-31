@@ -3,4 +3,12 @@
     <string name="search">Поиск\n</string>
     <string name="not_found">Не найдено</string>
     <string name="not_announced">Не известно</string>
+    <string name="metacritic">"Metacritic: %d"</string>
+    <string name="developers">Разработчики: %s</string>
+    <string name="publisher">Издатель: %s</string>
+    <string name="releaseDate">Дата выхода: %s</string>
+    <string name="genres">Жанры: %s</string>
+    <string name="tags">"Теги: %s"</string>
+    <string name="description">Описание: %s</string>
+    <string name="yourRating">Ваша оценка %d/%d</string>
 </resources>

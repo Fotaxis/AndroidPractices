@@ -12,13 +12,13 @@ import androidx.compose.ui.Modifier
 @Composable
 fun RatingBar(
     modifier: Modifier = Modifier,
-    rating: Float,
+    rating: Int,
     maxRating: Int = 5,
-    onRatingChanged: (Float) -> Unit
+    onRatingChanged: (Int) -> Unit
 ) {
     Row(modifier) {
         for (i in 1..maxRating) {
-            IconButton(onClick = { onRatingChanged(i.toFloat()) }) {
+            IconButton(onClick = { onRatingChanged(i) }) {
                 Icon(
                     if (i <= rating) Icons.Filled.Star else Icons.TwoTone.Star,
                     null
