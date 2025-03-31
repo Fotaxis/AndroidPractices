@@ -9,7 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.androidpractices.R
 import com.example.androidpractices.gameList.presentation.viewModel.ListViewModel
-import com.example.androidpractices.ui.components.EmptyDataBox
+import com.example.androidpractices.ui.components.FullscreenLoading
+import com.example.androidpractices.ui.components.FullscreenMessage
 import com.example.androidpractices.ui.components.GameItem
 import com.example.androidpractices.ui.components.SearchBar
 import com.github.terrakok.modo.Screen
@@ -35,8 +36,18 @@ class ListScreen(
                 SearchBar(state.query) { query -> viewModel.onQueryChanged(query) }
             }
         ) { paddingValues ->
+            if (state.isLoading) {
+                FullscreenLoading()
+                return@Scaffold
+            }
+            state.error?.let {
+                FullscreenMessage(msg = it)
+                return@Scaffold
+            }
+
             if (state.items.isEmpty()) {
-                EmptyDataBox(stringResource( R.string.not_found))
+                FullscreenMessage(stringResource(R.string.not_found))
+                return@Scaffold
             }
             LazyColumn(Modifier.padding(paddingValues)) {
                 items(state.items) {

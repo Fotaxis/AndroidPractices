@@ -24,7 +24,8 @@ import com.example.androidpractices.R
 import com.example.androidpractices.gameList.domain.entity.Rating
 import com.example.androidpractices.gameList.presentation.state.GameDetailState
 import com.example.androidpractices.gameList.presentation.viewModel.DetailsViewModel
-import com.example.androidpractices.ui.components.EmptyDataBox
+import com.example.androidpractices.ui.components.FullscreenLoading
+import com.example.androidpractices.ui.components.FullscreenMessage
 import com.example.androidpractices.ui.components.RatingBar
 import com.example.androidpractices.ui.components.SimpleAppBar
 import com.example.androidpractices.ui.theme.Spacing
@@ -38,7 +39,7 @@ import org.koin.core.parameter.parametersOf
 
 @Parcelize
 class GameScreen(
-    override val screenKey: ScreenKey = generateScreenKey(), val gameId: Int
+    override val screenKey: ScreenKey = generateScreenKey(), val gameId: String
 ) : Screen {
     @Composable
     override fun Content(modifier: Modifier) {
@@ -63,10 +64,18 @@ private fun MovieScreenContent(
     Scaffold(
         topBar = { SimpleAppBar(state.game?.title.orEmpty(), onBackPressed) },
     ) {
-        val game = state.game ?: run {
-            EmptyDataBox(stringResource(R.string.not_found))
+        if (state.isLoading) {
+            FullscreenLoading()
             return@Scaffold
         }
+
+        state.error?.let {
+            FullscreenMessage(msg = it)
+            return@Scaffold
+        }
+
+        val game = state.game ?: return@Scaffold
+
         Column(
             Modifier
                 .padding(it)
@@ -107,7 +116,7 @@ private fun MovieScreenContent(
             )
 
             Text(
-                text = stringResource(R.string.publisher, game.publisher),
+                text = stringResource(R.string.publisher, game.publishers.joinToString(", ")),
                 style = MaterialTheme.typography.bodySmall
             )
 

@@ -6,4 +6,6 @@ interface GamesListState {
     val query: String
     val items: List<GameShortEntity>
     val isEmpty: Boolean
+    val isLoading: Boolean
+    val error: String?
 }
