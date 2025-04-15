@@ -4,7 +4,6 @@ import com.example.androidpractices.gameList.data.model.GameFullResponse
 import com.example.androidpractices.gameList.data.model.GamesSearchResponse
 import com.example.androidpractices.gameList.domain.entity.GameFullEntity
 import com.example.androidpractices.gameList.domain.entity.GameShortEntity
-import com.example.androidpractices.gameList.domain.entity.Genre
 import com.example.androidpractices.gameList.domain.entity.Platform
 import com.example.androidpractices.gameList.domain.entity.Rating
 
@@ -16,7 +15,7 @@ class GameResponseToEntityMapper {
                 title = game.title.orEmpty(),
                 image = game.image.orEmpty(),
                 platforms = game.platforms?.map {
-                    Platform(it.platform.name.orEmpty())
+                    Platform(it.platform.name.orEmpty(), it.platform.id ?: -1)
                 }.orEmpty(),
             )
         }.orEmpty()
@@ -31,12 +30,12 @@ class GameResponseToEntityMapper {
             rating = response.ratings?.map {
                 Rating(
                     metascore = it.metascore ?: 0,
-                    platform = Platform(it.platform?.name.orEmpty())
+                    platform = Platform(it.platform?.name.orEmpty(), it.platform?.id ?: -1)
                 )
             }.orEmpty(),
             image = response.image.orEmpty(),
             platforms = response.platforms?.map {
-                Platform(it.platform.name.orEmpty())
+                Platform(it.platform.name.orEmpty(), it.platform.id ?: -1)
             }.orEmpty(),
             metacritic = response.metacritic ?: 0,
             developers = response.developers?.map {
@@ -46,7 +45,7 @@ class GameResponseToEntityMapper {
                 it.name.orEmpty()
             }.orEmpty(),
             genres = response.genres?.map {
-                Genre(it.name.orEmpty())
+                it.name.orEmpty()
             }.orEmpty(),
             tags = response.tags?.map {
                 it.name.orEmpty()
