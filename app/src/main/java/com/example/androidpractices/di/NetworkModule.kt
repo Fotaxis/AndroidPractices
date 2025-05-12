@@ -2,6 +2,7 @@ package com.example.androidpractices.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.example.androidpractices.BuildConfig
 import com.example.androidpractices.gameList.data.api.RawgIoApi
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
@@ -28,8 +29,9 @@ fun provideRetrofit(context: Context): Retrofit {
                     val url: HttpUrl =
                         request.url.newBuilder().addQueryParameter(
                             "key",
-                            "8ac4f96e15aa4bdaa03577cdfba3259f"
-                        ).build()
+                            BuildConfig.RAWGIO_API_KEY
+                        )
+                            .build()
                     chain.proceed(request.newBuilder().url(url).build())
                 }.intercept(it)
             }
