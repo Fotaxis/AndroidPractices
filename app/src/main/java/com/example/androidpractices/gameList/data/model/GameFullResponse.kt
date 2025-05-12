@@ -25,7 +25,7 @@ class GameFullResponse(
 
 class RatingsResponse(
     val metascore: Int?,
-    val platform: FlatNameResponse?
+    val platform: InnerPlatformResponse?
 )
 
 class FlatNameResponse(
@@ -33,5 +33,10 @@ class FlatNameResponse(
 )
 
 class PlatformResponse(
-    val platform: FlatNameResponse
+    val platform: InnerPlatformResponse
+)
+
+class InnerPlatformResponse(
+    val name: String?,
+    val id: Int?
 )

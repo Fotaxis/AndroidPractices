@@ -10,6 +10,7 @@ interface RawgIoApi {
     @GET("games")
     suspend fun getGames(
         @Query("search") search: String,
+        @Query("platforms") platforms: String?,
         @Query("page") page: Int = 1
     ): GamesSearchResponse
 

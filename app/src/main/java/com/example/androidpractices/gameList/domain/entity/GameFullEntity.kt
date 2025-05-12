@@ -12,6 +12,6 @@ class GameFullEntity(
     val metacritic: Int,
     val developers: List<String>,
     val publishers: List<String>,
-    val genres: List<Genre>,
+    val genres: List<String>,
     val tags: List<String>
 )

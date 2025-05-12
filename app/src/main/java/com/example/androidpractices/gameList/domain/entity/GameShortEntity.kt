@@ -5,4 +5,5 @@ class GameShortEntity(
     val title: String,
     val image: String,
     val platforms: List<Platform>,
+//    var isFavorite: Boolean = false
 )

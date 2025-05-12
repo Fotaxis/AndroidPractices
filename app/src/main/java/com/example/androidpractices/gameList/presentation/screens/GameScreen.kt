@@ -128,7 +128,7 @@ private fun MovieScreenContent(
             )
 
             Text(
-                text = stringResource(R.string.genres, game.genres.joinToString(", ") { it.name }),
+                text = stringResource(R.string.genres, game.genres.joinToString(", ")),
                 style = MaterialTheme.typography.bodySmall
             )
 
