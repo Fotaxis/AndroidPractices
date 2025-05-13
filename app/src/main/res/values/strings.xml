@@ -24,4 +24,11 @@
     <string name="image_source">Источник изображения</string>
     <string name="profile_edit">Редактировать профиль</string>
     <string name="profession">Профессия</string>
+    <string name="notifications_channel_id">notifications_channel</string>
+    <string name="notifications_channel_name">Notification</string>
+    <string name="notifications_title">Сработало напоминание</string>
+    <string name="notifications_content">Время любимой пары, %s</string>
+    <string name="notifications_invalid_time">Некорректный формат времени\n</string>
+    <string name="notifications_prompt">Время любимой пары</string>
+    <string name="cancel">Отмена\n</string>
 </resources>

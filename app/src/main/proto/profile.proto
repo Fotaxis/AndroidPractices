@@ -8,4 +8,5 @@ message ProfileEntity {
   string name = 2;
   string profession = 3;
   string document_url = 4;
+  string notification_time = 5;
 }

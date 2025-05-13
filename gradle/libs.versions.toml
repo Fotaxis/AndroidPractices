@@ -15,11 +15,11 @@ chuckerteam = "4.1.0"
 datastore = "1.1.6"
 protobufJavalite = "4.30.2"
 protobufKotlinLite = "4.30.2"
-
 koin = "4.0.4"
 coilCompose = "3.0.0"
 modoCompose = "0.10.1"
 roomKtx = "2.7.1"
+threetenabp = "1.4.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -54,7 +54,7 @@ chuckerteam = { module = "com.github.chuckerteam.chucker:library", version.ref =
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 protobuf-javalite = { module = "com.google.protobuf:protobuf-javalite", version.ref = "protobufJavalite" }
 protobuf-kotlin-lite = { module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobufKotlinLite" }
-
+threetenabp = { module = "com.jakewharton.threetenabp:threetenabp", version.ref = "threetenabp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
