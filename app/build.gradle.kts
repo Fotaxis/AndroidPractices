@@ -106,6 +106,7 @@ dependencies {
     implementation(libs.protobuf.javalite)
     implementation(libs.protobuf.kotlin.lite)
 
+    implementation(libs.threetenabp)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
