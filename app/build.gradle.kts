@@ -1,10 +1,22 @@
+import com.google.protobuf.gradle.id
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-parcelize")
     id("com.google.devtools.ksp") version "2.1.20-1.0.32"
+    id("com.google.protobuf") version "0.9.4"
 }
+
+val localProperties = Properties().apply {
+    val localFile = rootProject.file("local.properties")
+    if (localFile.exists()) {
+        load(localFile.inputStream())
+    }
+}
+val rawgIoApiKey = localProperties.getProperty("RAWGIO_API_KEY") ?: ""
 
 android {
     namespace = "com.example.androidpractices"
@@ -12,12 +24,14 @@ android {
 
     defaultConfig {
         applicationId = "com.example.androidpractices"
-        minSdk = 30
+        minSdk = 28
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "RAWGIO_API_KEY", rawgIoApiKey)
     }
 
     buildTypes {
@@ -38,6 +52,25 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
+    }
+
+    protobuf {
+        protoc {
+            artifact = "com.google.protobuf:protoc:3.24.1"
+        }
+        generateProtoTasks {
+            all().forEach { task ->
+                task.builtins {
+                    id("java") {
+                        option("lite")
+                    }
+                    id("kotlin") {
+                        option("lite")
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -70,6 +103,8 @@ dependencies {
     annotationProcessor(libs.androidx.room.room.compiler)
     implementation(libs.androidx.room.ktx)
 
+    implementation(libs.protobuf.javalite)
+    implementation(libs.protobuf.kotlin.lite)
 
 
     testImplementation(libs.junit)

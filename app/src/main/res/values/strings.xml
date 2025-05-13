@@ -13,4 +13,15 @@
     <string name="yourRating">Ваша оценка %d/%d</string>
     <string name="update_favorites">Обновить избранное</string>
     <string name="favorites_title">Избранное</string>
+    <string name="profile">Профиль</string>
+    <string name="document_url">Ссылка на резюме</string>
+    <string name="name">Имя</string>
+    <string name="document">Резюме</string>
+    <string name="permission_denied">Нет разрешения</string>
+    <string name="ok">Ок</string>
+    <string name="gallery">Галлерея</string>
+    <string name="camera">Камера</string>
+    <string name="image_source">Источник изображения</string>
+    <string name="profile_edit">Редактировать профиль</string>
+    <string name="profession">Профессия</string>
 </resources>

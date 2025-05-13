@@ -5,19 +5,21 @@ coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.7"
+lifecycleRuntimeKtx = "2.9.0"
 activityCompose = "1.10.1"
-composeBom = "2025.04.00"
+composeBom = "2025.05.00"
 retrofit = "2.11.0"
 converterGson = "2.11.0"
 gson = "2.12.1"
 chuckerteam = "4.1.0"
-datastore = "1.1.4"
+datastore = "1.1.6"
+protobufJavalite = "4.30.2"
+protobufKotlinLite = "4.30.2"
 
-koin = "4.0.0"
+koin = "4.0.4"
 coilCompose = "3.0.0"
 modoCompose = "0.10.1"
-roomKtx = "2.7.0"
+roomKtx = "2.7.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -50,7 +52,8 @@ converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 chuckerteam = { module = "com.github.chuckerteam.chucker:library", version.ref = "chuckerteam" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
-
+protobuf-javalite = { module = "com.google.protobuf:protobuf-javalite", version.ref = "protobufJavalite" }
+protobuf-kotlin-lite = { module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobufKotlinLite" }
 
 
 [plugins]

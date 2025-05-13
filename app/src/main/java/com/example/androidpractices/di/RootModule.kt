@@ -13,9 +13,17 @@ import com.example.androidpractices.gameList.data.repository.GamesRepository
 import com.example.androidpractices.gameList.domain.repository.IGamesRepository
 import com.example.androidpractices.gameList.presentation.viewModel.DetailsViewModel
 import com.example.androidpractices.gameList.presentation.viewModel.ListViewModel
+import com.example.androidpractices.profile.data.repository.ProfileRepository
+import com.example.androidpractices.profile.data.serializer.DataSourceProvider
+import com.example.androidpractices.profile.domain.model.ProfileEntity
+import com.example.androidpractices.profile.domain.repository.IProfileRepository
+import com.example.androidpractices.profile.presentation.viewModel.EditProfileViewModel
+import com.example.androidpractices.profile.presentation.viewModel.ProfileViewModel
+
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val rootModule = module {
@@ -31,13 +39,25 @@ val rootModule = module {
         getDataStore(androidContext())
     }
 
-    single<IGamesRepository> { GamesRepository(get(), get(), get()) }
+    single<IProfileRepository> {
+        ProfileRepository()
+    }
+
+    single<IGamesRepository> {
+        GamesRepository(get(), get(), get())
+    }
 
     factory { GameResponseToEntityMapper() }
+
+    factory<DataStore<ProfileEntity>>(named("profile")) { DataSourceProvider(get()).provide() }
+
 
     viewModel { ListViewModel(get(), it.get()) }
     viewModel { DetailsViewModel(get(), it.get(), it.get()) }
     viewModel { FavoritesViewModel(get()) }
+    viewModel { ProfileViewModel(get()) }
+    viewModel { EditProfileViewModel(get()) }
+
 }
 
 fun getSharedPrefs(androidApplication: Application): SharedPreferences {
